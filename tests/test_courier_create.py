@@ -3,7 +3,8 @@ import allure
 import pytest
 from data import Data
 from urls import Urls
-from helpers import create_random_login, create_random_password, create_random_firstname
+from helpers import create_random_login, create_random_password, create_random_firstname, login_and_get_id, \
+    delete_courier
 
 
 class TestCourierCreate:
@@ -18,6 +19,8 @@ class TestCourierCreate:
         }
         response = requests.post(Urls.URL_courier_create, data=payload)
         assert response.status_code == 201 and response.json() == {'ok': True}
+        courier_id = login_and_get_id(payload)
+        delete_courier(courier_id)
 
     @allure.title('Проверка получения ошибки при повторном использовании логина для создания курьера')
     @allure.description('Проверяются код и тело ответа.')

@@ -1,1 +1,7 @@
-# Sprint_7
+test_create_courier_account_success - проверка успешного создания аккаунта курьера с валидными данными
+test_create_courier_account_login_conflict - проверка получения ошибки при повторном использовании логина для создания курьера
+test_create_courier_account_with_empty_required_fields - проверка получения ошибки при создании курьера с незаполненными обязательными полями
+test_courier_login_nonexistent_data_not_found - проверка получения ошибки аутентификации курьера при вводе невалидных данных
+test_courier_login_empty_credentials_bad_request - проверка получения ошибки аутентификации курьера с пустым полем логина или пароля
+test_order_create_color_parametrize_success - проверка создания заказа с разными параметрами цвета
+test_orders_list_get_success - проверка получения списка заказов

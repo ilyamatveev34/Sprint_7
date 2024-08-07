@@ -3,7 +3,8 @@ import allure
 import pytest
 from data import Data
 from urls import Urls
-from helpers import create_random_login, create_random_password, create_random_firstname
+from helpers import create_random_login, create_random_password, create_random_firstname, delete_courier, \
+    login_and_get_id
 
 
 class TestCourierLogin:
@@ -19,6 +20,8 @@ class TestCourierLogin:
         requests.post(Urls.URL_courier_create, data=payload)
         response = requests.post(Urls.URL_courier_login, data=payload)
         assert response.status_code == 200 and 'id' in response.text
+        courier_id = login_and_get_id(payload)
+        delete_courier(courier_id)
 
     @allure.title('Проверка получения ошибки аутентификации курьера при вводе невалидных данных')
     @allure.description('В тест по очереди передаются наборы данных с несуществующим логином или неверным паролем. '
